@@ -8,6 +8,17 @@
 </head>
 <body>
 
+<% if session['uid'] %>
+  <% current_user = User.find_by(uid: session['uid']) %>
+  <img src="<%= current_user.image_url %>" height="100px" alt="profile-pic">
+  Signed in as
+  <%= current_user.email %>
+  <a href="/signout">logout</a>
+<% else %>
+  <a href="/auth/facebook">login with facebook</a>
+<% end %>
+
+
 <%= yield %>
 
 </body>
